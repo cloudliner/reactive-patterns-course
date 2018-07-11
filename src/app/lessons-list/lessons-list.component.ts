@@ -33,4 +33,8 @@ export class LessonsListComponent implements Observer {
     console.log('toggling lesson ...');
     lesson.completed = !lesson.completed;
   }
+
+  delete(deleted: Lesson) {
+    _.remove(this.lessons, lesson => lesson.id === deleted.id);
+  }
 }
