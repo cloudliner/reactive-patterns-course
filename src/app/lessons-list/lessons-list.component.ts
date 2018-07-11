@@ -26,7 +26,7 @@ export class LessonsListComponent implements Observer {
 
   notify(data: Lesson[]) {
     console.log('Lessons list component received data');
-    this.lessons = data;
+    this.lessons = data.slice(0);
   }
 
   toggleLessonViewed(lesson: Lesson) {

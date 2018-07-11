@@ -10,7 +10,7 @@ import { Lesson } from '../shared/model/lesson';
 })
 export class EventBusExperimentsComponent implements OnInit {
 
-  lessons: Lesson[] = [];
+  private lessons: Lesson[] = [];
 
   ngOnInit() {
     console.log('Top level compoent broadcast all lessons ...');
