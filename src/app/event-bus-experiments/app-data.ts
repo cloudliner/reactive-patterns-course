@@ -1,7 +1,5 @@
 import * as _ from 'lodash';
-
-export const LESSONS_LIST_AVAILABLE = 'NEW_LIST_AVAILABLE';
-export const ADD_NEW_LESSON = 'ADD_NEW_LESSON';
+import { Lesson } from '../shared/model/lesson';
 
 export interface Observer {
   next(data: any);
@@ -33,3 +31,9 @@ class SubjectImplementation implements Subject {
 }
 
 export let lessonsList$: Observable;
+
+let lessons: Lesson[] = [];
+
+export function initializeLessonsList(newList: Lesson[]) {
+  lessons = _.cloneDeep(newList);
+}
