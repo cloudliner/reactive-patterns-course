@@ -4,13 +4,15 @@ export const LESSONS_LIST_AVAILABLE = 'NEW_LIST_AVAILABLE';
 export const ADD_NEW_LESSON = 'ADD_NEW_LESSON';
 
 export interface Observer {
-  notify(data: any);
+  next(data: any);
 }
 
-interface Subject {
-  registerObserver(eventType: string, obs: Observer);
-  unregisterObserver(eventType: string, obs: Observer);
-  notifyObservers(eventType: string, data: any);
+export interface Observable {
+  subscribe(obs: Observer);
+  unsubscribe(obs: Observer);
+}
+
+interface Subject extends Observer, Observable {
 }
 
 class EventBus implements Subject {
