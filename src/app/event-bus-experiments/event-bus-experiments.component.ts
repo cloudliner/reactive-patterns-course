@@ -23,7 +23,7 @@ export class EventBusExperimentsComponent implements OnInit {
         description: 'New lesson arriving from the backend'
       });
       globalEventBus.notifyObservers(LESSONS_LIST_AVAILABLE, this.lessons);
-    }, 1000);
+    }, 10000);
   }
 
   addLesson(lessonText: string) {
