@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ADD_NEW_LESSON, globalEventBus, LESSONS_LIST_AVAILABLE} from './event-bus';
+import { ADD_NEW_LESSON, globalEventBus, LESSONS_LIST_AVAILABLE } from './event-bus';
 import { testLessons } from '../shared/model/test-lessons';
+import { Lesson } from '../shared/model/lesson';
 
 @Component({
   selector: 'event-bus-experiments',
@@ -9,9 +10,20 @@ import { testLessons } from '../shared/model/test-lessons';
 })
 export class EventBusExperimentsComponent implements OnInit {
 
+  lessons: Lesson[] = [];
+
   ngOnInit() {
-    console.log('Top level compoent broadcast all lessons ...')
-    globalEventBus.notifyObservers(LESSONS_LIST_AVAILABLE, testLessons.slice(0));
+    console.log('Top level compoent broadcast all lessons ...');
+    this.lessons = testLessons.slice(0);
+    globalEventBus.notifyObservers(LESSONS_LIST_AVAILABLE, this.lessons);
+
+    setTimeout(() => {
+      this.lessons.push({
+        id: Math.random(),
+        description: 'New lesson arriving from the backend'
+      });
+      globalEventBus.notifyObservers(LESSONS_LIST_AVAILABLE, this.lessons);
+    }, 1000);
   }
 
   addLesson(lessonText: string) {
