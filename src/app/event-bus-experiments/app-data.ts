@@ -30,19 +30,22 @@ class SubjectImplementation implements Subject {
   }
 }
 
-const lessonsListSubject = new SubjectImplementation();
+class DataStore {
+  private lessons: Lesson[] = [];
+  private lessonsListSubject = new SubjectImplementation();
 
-export let lessonsList$: Observable = {
-  subscribe: obs => {
-    lessonsListSubject.subscribe(obs);
-    obs.next(lessons);
-  },
-  unsubscribe: obs => lessonsListSubject.unsubscribe(obs)
-};
+  public lessonsList$: Observable = {
+    subscribe: obs => {
+      this.lessonsListSubject.subscribe(obs);
+      obs.next(this.lessons);
+    },
+    unsubscribe: obs => this.lessonsListSubject.unsubscribe(obs)
+  };
 
-let lessons: Lesson[] = [];
-
-export function initializeLessonsList(newList: Lesson[]) {
-  lessons = _.cloneDeep(newList);
-  lessonsListSubject.next(lessons);
+  initializeLessonsList(newList: Lesson[]) {
+    this.lessons = _.cloneDeep(newList);
+    this.lessonsListSubject.next(this.lessons);
+  }
 }
+
+export const store = new DataStore();
