@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import * as _ from 'lodash';
+import { Component, OnInit } from '@angular/core';
 import { Lesson } from '../shared/model/lesson';
-import {lessonsList$, Observer} from '../event-bus-experiments/app-data';
+import { lessonsList$, Observer } from '../event-bus-experiments/app-data';
 
 @Component({
   selector: 'lessons-list',

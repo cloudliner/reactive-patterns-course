@@ -30,10 +30,16 @@ class SubjectImplementation implements Subject {
   }
 }
 
-export let lessonsList$: Observable;
+const lessonsListSubject = new SubjectImplementation();
+
+export let lessonsList$: Observable = {
+  subscribe: obs => lessonsListSubject.subscribe(obs),
+  unsubscribe: obs => lessonsListSubject.unsubscribe(obs)
+};
 
 let lessons: Lesson[] = [];
 
 export function initializeLessonsList(newList: Lesson[]) {
   lessons = _.cloneDeep(newList);
+  lessonsListSubject.next(lessons);
 }
