@@ -18,15 +18,15 @@ export class LessonsListComponent implements Observer, OnInit {
 
   next(data: Lesson[]) {
     console.log('Lessons list component received data');
-    this.lessons = data.slice(0);
+    this.lessons = data;
   }
 
   toggleLessonViewed(lesson: Lesson) {
     console.log('toggling lesson ...');
-    lesson.completed = !lesson.completed;
+    store.toggleLessonViewed(lesson);
   }
 
   delete(deleted: Lesson) {
-    _.remove(this.lessons, lesson => lesson.id === deleted.id);
+    store.deleteLesson(deleted);
   }
 }
