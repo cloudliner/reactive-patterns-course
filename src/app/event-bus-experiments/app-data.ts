@@ -46,6 +46,11 @@ class DataStore {
     this.lessons = _.cloneDeep(newList);
     this.lessonsListSubject.next(this.lessons);
   }
+
+  addLesson(newLesson: Lesson) {
+    this.lessons.push(_.cloneDeep(newLesson));
+    this.lessonsListSubject.next(this.lessons);
+  }
 }
 
 export const store = new DataStore();

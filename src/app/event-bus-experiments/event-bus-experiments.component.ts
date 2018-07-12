@@ -21,11 +21,16 @@ export class EventBusExperimentsComponent implements OnInit {
         description: 'New lesson arriving from the backend'
       };
 
-      // TODO
+      store.addLesson(newLesson);
     }, 10000);
   }
 
   addLesson(lessonText: string) {
-    // TODO
+    const newLesson = {
+      id: Math.random(),
+      description: lessonText
+    };
+
+    store.addLesson(newLesson);
   }
 }
