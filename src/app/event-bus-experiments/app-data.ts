@@ -4,7 +4,7 @@ import { Subject, Observable, Observer } from 'rxjs';
 
 class DataStore {
   private lessons: Lesson[] = [];
-  private lessonsListSubject = new Subject();
+  private lessonsListSubject = new Subject<Lesson[]>();
 
   public lessonsList$: Observable<Lesson[]> = this.lessonsListSubject.asObservable();
 
