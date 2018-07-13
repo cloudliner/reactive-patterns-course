@@ -6,6 +6,14 @@ import { BrowserEventExperimentsComponent } from './browser-event-experiments/br
 import { EventBusExperimentsComponent } from './event-bus-experiments/event-bus-experiments.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { LessonsCounterComponent } from './lessons-counter/lessons-counter.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
+
+import { firebaseConfig } from '../environments/firebase.config';
+import { routerConfig } from './router.config';
 
 @NgModule({
   declarations: [
@@ -13,10 +21,15 @@ import { LessonsCounterComponent } from './lessons-counter/lessons-counter.compo
     BrowserEventExperimentsComponent,
     EventBusExperimentsComponent,
     LessonsListComponent,
-    LessonsCounterComponent
+    LessonsCounterComponent,
+    HomeComponent,
+    CourseDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    RouterModule.forRoot(routerConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]

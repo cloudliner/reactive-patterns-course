@@ -1,5 +1,5 @@
-.course-container {
-  max-width: 500px;
+.course-container, .screen-container {
+  max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
@@ -9,4 +9,29 @@
   width: 200px;
   height: 200px;
   margin: 0 auto 30px auto;
+}
+
+.courses-list {
+  margin: 0 auto 50px auto;
+  min-width: 350px;
+}
+
+.screen-container h2 {
+  max-width: 300px;
+  margin: 30px auto;
+}
+
+.courses-list tr {
+  height: 35px;
+  line-height: 35px;
+}
+
+.courses-list button {
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.lessons-list {
+  max-width: 200px;
+  margin: 20px auto;
 }
