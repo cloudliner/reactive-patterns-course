@@ -1,5 +1,5 @@
 export interface Lesson {
-  id: number;
+  id: string;
   description: string;
   duration?: string;
   url?: string;
