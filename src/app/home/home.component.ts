@@ -17,6 +17,10 @@ export class HomeComponent implements OnInit {
   constructor(private db: AngularFireDatabase) {
   }
 
+  changeCourseData() {
+    this.courses.forEach(course => course.description = '=>' + course.description);
+  }
+
   ngOnInit() {
 
     this.db.list('courses').valueChanges()
