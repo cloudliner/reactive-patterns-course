@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.coursesService.findAllCouses()
+    this.coursesService.findAllCourses()
       .subscribe(
         data => this.courses = data
       );

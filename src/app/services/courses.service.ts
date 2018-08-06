@@ -12,7 +12,7 @@ export class CoursesService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  findAllCouses(): Observable<Course[]> {
+  findAllCourses(): Observable<Course[]> {
     return this.db.list('courses').valueChanges()
       .pipe(
         tap(console.log)
