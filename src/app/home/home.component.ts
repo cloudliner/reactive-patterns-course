@@ -21,15 +21,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.db.list('lessons', ref => {
-      return ref.orderByKey().limitToLast(10);
-    }).valueChanges()
-      .pipe(
-        tap(console.log)
-      )
+    this.coursesService.findAllCouses()
       .subscribe(
-        data => this.latestLessons = data
+        data => this.courses = data
+      );
+
+    this.coursesService.findLatestLessons()
+      .subscribe(
+      data => this.latestLessons = data
       );
   }
 }
