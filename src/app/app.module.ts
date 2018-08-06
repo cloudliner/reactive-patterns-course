@@ -14,6 +14,7 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 
 import { firebaseConfig } from '../environments/firebase.config';
 import { routerConfig } from './router.config';
+import { CoursesService } from './services/courses.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { routerConfig } from './router.config';
     AngularFireDatabaseModule,
     RouterModule.forRoot(routerConfig),
   ],
-  providers: [],
+  providers: [
+    CoursesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
