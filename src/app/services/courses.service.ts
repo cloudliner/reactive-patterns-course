@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {Observable} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {first, map, tap} from 'rxjs/operators';
 import {Course} from '../shared/model/course';
 import {Lesson} from '../shared/model/lesson';
 
@@ -15,6 +15,7 @@ export class CoursesService {
   findAllCourses(): Observable<Course[]> {
     return this.db.list('courses').valueChanges()
       .pipe(
+        first(),
         tap(console.log)
       );
   }
@@ -24,6 +25,7 @@ export class CoursesService {
       return ref.orderByKey().limitToLast(10);
     }).valueChanges()
       .pipe(
+        first(),
         tap(console.log)
       );
   }
@@ -33,6 +35,7 @@ export class CoursesService {
       return ref.orderByChild('url').equalTo(courseUrl);
     }).snapshotChanges()
       .pipe(
+        first(),
         map(data => {
           return {
             id: data[0].payload.key,
@@ -45,6 +48,8 @@ export class CoursesService {
   findLessonsForCourse(courseId: string): Observable<Lesson[]> {
     return this.db.list('lessons', ref => {
       return ref.orderByChild('courseId').equalTo(courseId);
-    }).valueChanges() as Observable<Lesson[]>;
+    }).valueChanges().pipe(
+      first()
+    ) as Observable<Lesson[]>;
   }
 }
