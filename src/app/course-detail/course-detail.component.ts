@@ -21,21 +21,11 @@ export class CourseDetailComponent implements OnInit {
     route.params
       .subscribe(params => {
         const courseUrl = params['id'];
-
-        this.db.list('courses', ref => {
-          return ref.orderByChild('url').equalTo(courseUrl);
-        }).snapshotChanges()
-          .pipe(
-            map(data => data[0])
-          )
-          .subscribe(data => {
-            this.course = data.payload.val() as Course;
-            const key = data.payload.key;
-
-            this.db.list('lessons', ref => {
-              return ref.orderByChild('courseId').equalTo(key);
-            }).valueChanges()
-              .subscribe(lessons => this.lessons = lessons as Lesson[]);
+          this.coursesService.findCourseByUrl(courseUrl)
+            .subscribe(data => {
+              this.course = data;
+              this.coursesService.findLessonsForCourse(this.course.id)
+                .subscribe(lessons => this.lessons = lessons as Lesson[]);
           });
       });
   }
