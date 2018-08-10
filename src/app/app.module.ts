@@ -15,6 +15,7 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { firebaseConfig } from '../environments/firebase.config';
 import { routerConfig } from './router.config';
 import { CoursesService } from './services/courses.service';
+import { CoursesListComponent } from './courses-list/courses-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CoursesService } from './services/courses.service';
     LessonsListComponent,
     LessonsCounterComponent,
     HomeComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    CoursesListComponent
   ],
   imports: [
     BrowserModule,
